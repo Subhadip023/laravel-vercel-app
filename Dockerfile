@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     supervisor \
-    libpq-dev && \
+    libpq-dev \
+    nodejs \
+    npm && \
     docker-php-ext-install pdo pdo_pgsql
 
 # Install Composer globally
@@ -24,6 +26,11 @@ WORKDIR /var/www
 
 # Copy application files
 COPY . .
+
+# Install frontend dependencies and build assets
+COPY package.json package-lock.json /var/www/
+RUN npm install
+RUN npm run build
 
 # Install PHP dependencies
 RUN composer install --optimize-autoloader --no-dev
