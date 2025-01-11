@@ -1,7 +1,7 @@
 # Use an official PHP image with FPM
 FROM php:8.2-fpm
 
-# Install system dependencies
+# Install system dependencies and PostgreSQL extensions
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    supervisor
+    supervisor \
+    libpq-dev && \
+    docker-php-ext-install pdo pdo_pgsql
 
 # Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
