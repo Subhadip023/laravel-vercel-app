@@ -9,7 +9,21 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <style>
+             * {
+                margin: 0;
+                padding: 0;
+            } 
 
+            body{
+                background: #000;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+        </style>
        
           @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
